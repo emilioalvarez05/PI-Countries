@@ -2,7 +2,8 @@ const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
 const { Op } = require("sequelize");
-const { Country } = require("../db.js")
+const { Country, Activity } = require("../db.js");
+
 
 
 
@@ -68,6 +69,10 @@ router.get("/:id", async(req, res, next) =>{
                 where: {
                     id: id.toUpperCase()
                 }, 
+                include: [{
+                    model: Activity,
+                    attributes: ["name", "difficulty", "duration", "season"]
+                }]
             })
         if(country){
             res.send(country)
