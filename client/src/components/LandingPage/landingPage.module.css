@@ -13,7 +13,7 @@
 }
 .titulo {
     font-size: 300%;
-    font-style: italic;
+    background-color: rgba(224, 228, 17, 0.692);
 }
 
 .divBoton {

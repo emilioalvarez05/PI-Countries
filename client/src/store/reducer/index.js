@@ -1,8 +1,8 @@
-
+import { GET_ALL_COUNTRIES } from "../actions";
 
 const initialState = {
     countries: [],
-    allCountries: [],
+    allCountries: [], // hace las veces de backup
     filter: {},
     countriesDetail: {},
     touristActivity: []
@@ -10,6 +10,12 @@ const initialState = {
 
 export default function reducer(state = initialState, {type, payload}){
     switch (type) {
+        case GET_ALL_COUNTRIES:
+      return {
+        ...state,
+        countries: payload,
+        allCountries: payload
+      };
         
 
         default:
