@@ -4,9 +4,9 @@ import axios from "axios"
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES" 
 export const GET_COUNTRY_ID = "GET_COUNTRY_ID"
 
-export const getAllCountries = () => {
+export const getAllCountries = (name) => {
     return function(dispatch) {
-         axios.get("http://localhost:3001/countries")
+         axios.get(`http://localhost:3001/countries/?name=${name? name : ""}`) 
         .then((allCountries) => {
          dispatch({
              type: GET_ALL_COUNTRIES, 

@@ -1,0 +1,7 @@
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(59, 56, 56);
+    padding-bottom: 5%;
+    padding-top: 5%;
+}
