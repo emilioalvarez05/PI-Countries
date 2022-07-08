@@ -23,6 +23,8 @@ const Home = () => {
                 return(
                     
                     <CountryCard
+                    key = {country.id} 
+                    id = {country.id}
                     flags = {country.flags}
                     name = {country.name}
                     continents = {country.continents}
