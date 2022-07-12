@@ -1,6 +1,7 @@
 .contenedor {
     background-image: url("https://astelus.com/wp-content/viajes/Lago-Moraine-Parque-Nacional-Banff-Alberta-Canada.jpg");
-    
+    background-size: cover;
+    min-height: 100vh;
 }
 
 .name{

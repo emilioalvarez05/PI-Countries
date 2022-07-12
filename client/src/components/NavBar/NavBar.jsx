@@ -6,18 +6,16 @@ import SearchBar from "../SearchBar/SearchBar"
 const NavBar = () => {
 
     return (
+        <header className={style.contenedor}>
+        <div>
 
-        <div className={style.contenedor}>
-
-            <Link className={style.home} to="/home">Home</Link>
-            <Link to="/create">Create</Link>
+            <Link className={style.list} to="/home">Home</Link>
+            <Link className={style.listitem} to="/create">Crear Actividad</Link>
             <SearchBar/>
 
             
-
-
         </div>
-
+        </header>
 
 
     )

@@ -1,8 +1,9 @@
 import axios from "axios"
 
-
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES" 
 export const GET_COUNTRY_ID = "GET_COUNTRY_ID"
+export const FILTER = "FILTER"
+export const ORDER = "ORDER"
 
 export const getAllCountries = (name) => {
     return function(dispatch) {
@@ -32,3 +33,17 @@ export const getCountryById = (id) => {
         }
     }
 }
+
+export const filter = (filter) => {
+    return {
+        type: FILTER,
+        payload: filter
+    }
+}
+
+export const orderCountry = (order) => {
+    return {
+        type: ORDER, 
+        payload: order
+    }
+} 

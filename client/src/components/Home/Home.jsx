@@ -5,19 +5,20 @@ import { getAllCountries } from "../../store/actions"
 import CountryCard from "../CountryCard/CountryCard"
 import Paginado from "../Paginado/Paginado"
 import { useState } from "react"
+import Filter from "../Filter/Filter"
 
 const Home = () => {
 
+    const countries = useSelector(state => state.countries)
     const allCountries = useSelector(state => state.allCountries)
     const dispatch = useDispatch()
     //console.log(allCountries)
 
     const [currentPage, setCurrentPage] = useState(1);
-  //  const [countriesPerPage, setCountriesPerPage] = useState(9);
-    const countriesPerPage = currentPage === 1 ? 9 : 10
-    const indexLastCountries = currentPage * countriesPerPage;
-    const indexFirstCountries = indexLastCountries - countriesPerPage;
-    const currentCountries = allCountries.slice(indexFirstCountries, indexLastCountries);
+    const [countriesPerPage] = useState(10)
+    const indexLastCountries = currentPage === 1 ? 9 : currentPage * countriesPerPage - 1;
+    const indexFirstCountries = currentPage === 1 ? 0 : indexLastCountries - countriesPerPage;
+    const currentCountries = countries.slice(indexFirstCountries, indexLastCountries);
 
     const paginado = (numberOfPage) => {
         setCurrentPage(numberOfPage);
@@ -31,8 +32,8 @@ const Home = () => {
     }
 
     function nextPage() {
-        let lastPage = Math.ceil(allCountries.length / countriesPerPage);
-        if (currentPage < lastPage) {
+        let lastPage = Math.ceil(countries.length / countriesPerPage);
+        if (currentPage <= lastPage) {
             setCurrentPage(currentPage + 1);
         }
     }
@@ -41,28 +42,32 @@ const Home = () => {
         if(allCountries.length === 0){
             dispatch(getAllCountries())
         }
-        let lastPage = Math.ceil(allCountries.length / countriesPerPage);
+        let lastPage = Math.ceil(countries.length / countriesPerPage);
         if (currentPage > lastPage) {
             setCurrentPage(1);
         }
-    },[allCountries.length, dispatch])
-    //console.log(allCountries)
+    },[countries.length, dispatch])
+   // console.log(allCountries)
 
     return(
 
         <div className={style.contenedor}>
 
             <div>
+                <Filter/>
+            </div>
+
+            <div>
                 <Paginado
                     countriesPerPage={countriesPerPage}
-                    allCountries={allCountries.length}
+                    countries={countries.length}
                     paginado={paginado}
                     currentPage={currentPage}
                     beforePage={beforePage}
                     nextPage={nextPage}
                 />
             </div>
-
+            <div className={style.card}>
             {currentCountries.length ? (currentCountries?.map(country => {
                 return(
                     
@@ -74,8 +79,9 @@ const Home = () => {
                     continents = {country.continents}
                     />
                 )
-            })) : <h1>Cargando</h1> || alert("no se encontro el pais")//<h1>Cargando</h1>
+            })) : <h1>Cargando</h1> 
         }
+        </div>
         </div>
 
     )

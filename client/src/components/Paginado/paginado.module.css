@@ -1,5 +1,5 @@
 .padre{
-    background: linear-gradient(to right, #f8b500, #fceabb); 
+    /* background: linear-gradient(to right, #352fa7, #fceabb); */
     display: flex;
 }
 .nav{
@@ -19,16 +19,16 @@ width: 100%;
 
 .li{
     display: inline;
-    border-radius: 5px;    
-    
+    border-radius: 5px;
+
 }
 
 .boton{
     color: black;
     float: left;
     padding: 8px 16px;
-    text-decoration: none;   
-    background-color: #f8b500;
+    text-decoration: none;
+    background-color: #dddbd4;
     color: black;
     border-radius: 5px;
     font-size: 22px;
@@ -37,17 +37,17 @@ width: 100%;
     cursor: pointer;
 }
 
-.boton:hover{       
-    background-color: rgba(255,255,0,1)
+.boton:hover{
+    background-color: rgb(64, 64, 51)
 }
 
 .botonSeleccionado{
     color: black;
     float: left;
     padding: 8px 16px;
-    text-decoration: none;   
-    background-color: rgba(255,255,0,1);
-    color: black;
+    text-decoration: none;
+    background-color: rgb(67, 67, 10);
+    color: rgb(245, 234, 234);
     border-radius: 5px;
     font-size: 22px;
     border: 1px solid black;
@@ -55,6 +55,6 @@ width: 100%;
     cursor: pointer;
 }
 
-.botonSeleccionado:hover{       
-    background-color: rgba(255,255,0,1)
+.botonSeleccionado:hover{
+    background-color: rgb(88, 88, 28)
 }

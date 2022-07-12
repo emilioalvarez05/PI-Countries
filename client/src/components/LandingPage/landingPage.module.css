@@ -1,5 +1,5 @@
 .contenedor {
-    background-image: url("https://astelus.com/wp-content/viajes/Lago-Moraine-Parque-Nacional-Banff-Alberta-Canada.jpg");
+    background-image: url("https://capturetheatlas.com/wp-content/uploads/2020/12/Is-Belize-Open-for-Travel-1415x540-1607269293.jpg");
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -35,7 +35,7 @@
     padding-bottom:20px;
     padding-left:40px;
     padding-right:40px;
-    background-color:rgba(255,255,0,0.8);
+    background-color: transparent;
     border-radius: 20px;
     border-color: black;
     margin-bottom: 10px; 
@@ -43,6 +43,7 @@
 }
 
 .boton:hover{       
-    background-color: rgba(255,255,0,1)
+    background-color: #008CBA;
+    color: white;
 }
 

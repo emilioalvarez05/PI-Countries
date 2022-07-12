@@ -1,3 +1,15 @@
 .contenedor {
-    background-image: url("https://astelus.com/wp-content/viajes/Lago-Moraine-Parque-Nacional-Banff-Alberta-Canada.jpg")
+    background-image: url("https://w0.peakpx.com/wallpaper/86/455/HD-wallpaper-route-to-castle-mountai-mountain-scenery.jpg");
+    background-size: cover;
+    min-height: 100vh;
+    display: flexbox;
+    align-items: center;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
