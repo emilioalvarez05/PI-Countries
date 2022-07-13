@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { orderCountry } from "../../store/actions"
+import { filter, orderCountry } from "../../store/actions"
 
 
 
@@ -12,6 +12,18 @@ const Filter = () => {
         console.log(e.target.value)
         e.preventDefault()
         dispatch(orderCountry(e.target.value))
+    }
+
+    function onFilterChange (e) {
+        e.preventDefault()
+        if(e.target.name === "selectContinents"){
+            dispatch(filter({
+                order: order,
+                continentes: e.target.value,
+                actividades: actividades
+            }))
+        }
+        
     }
 
 
@@ -27,7 +39,7 @@ const Filter = () => {
             <option value="menorPoblacion">Menor Poblacion</option>
         </select>
 
-        <select>
+        <select name="selectContinents" value={continentes} onChange={onFilterChange}>
             <option value="continents">Continentes</option>
             <option value="North America">Norte America</option>
             <option value="South America">Sudamerica</option>

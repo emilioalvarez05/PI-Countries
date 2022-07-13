@@ -15,7 +15,7 @@ const DetailsCountry = () => {
     useEffect(() => {
        dispatch(getCountryById(id))
 
-    },[dispatch])
+    },[dispatch, id])
     //console.log(countryDetail)
 
     if(!countryDetail.id) {

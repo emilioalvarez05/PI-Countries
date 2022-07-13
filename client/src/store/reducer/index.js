@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY_ID, ORDER } from "../actions";
+import { GET_ALL_COUNTRIES, GET_COUNTRY_ID, ORDER, FILTER } from "../actions";
 
 const initialState = {
     countries: [],
@@ -46,6 +46,7 @@ function orderFilter(array, payload) {
   return sortedCountries
 }
 
+
 export default function reducer(state = initialState, {type, payload}){
     switch (type) {
         case GET_ALL_COUNTRIES:
@@ -70,10 +71,34 @@ export default function reducer(state = initialState, {type, payload}){
         filter: {
           ...state.filter,
           order: payload,
+        }
+        }
+       case FILTER:
+        function filterByContinents(countries, searchContinents){
+          console.log("Soy countries", countries)
+          console.log("Soy search", searchContinents)
+            if(searchContinents === "continents"){
+              return countries
+            } else {
+              const filterCountries = countries.filter((c) => c.continents === searchContinents )
+              return filterCountries
+            }
+          }
+        const countriesFilterByContinents = filterByContinents(state.allCountries, payload.continentes)
+        
+        const newOrder = orderFilter(countriesFilterByContinents, state.filter.order)
+
+        return {
+          ...state,
+          countries: newOrder,
+          filter: {
+            ...state.filter,
+            continentes: payload.searchContinents
+
+          }
 
         }
 
-        }
         
 
         default:

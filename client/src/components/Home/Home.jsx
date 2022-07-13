@@ -46,7 +46,7 @@ const Home = () => {
         if (currentPage > lastPage) {
             setCurrentPage(1);
         }
-    },[countries.length, dispatch])
+    },[countries.length, allCountries.length, countriesPerPage, currentPage, dispatch])
    // console.log(allCountries)
 
     return(
