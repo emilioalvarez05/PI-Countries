@@ -1,7 +1,7 @@
 import style from "./home.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { getAllCountries } from "../../store/actions"
+import { getAllCountries, getActivity } from "../../store/actions"
 import CountryCard from "../CountryCard/CountryCard"
 import Paginado from "../Paginado/Paginado"
 import { useState } from "react"
@@ -11,8 +11,9 @@ const Home = () => {
 
     const countries = useSelector(state => state.countries)
     const allCountries = useSelector(state => state.allCountries)
+    const touristActivity = useSelector(state => state.touristActivity)
     const dispatch = useDispatch()
-    //console.log(allCountries)
+    console.log(allCountries)
 
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage] = useState(10)
@@ -46,7 +47,10 @@ const Home = () => {
         if (currentPage > lastPage) {
             setCurrentPage(1);
         }
-    },[countries.length, allCountries.length, countriesPerPage, currentPage, dispatch])
+        if(touristActivity.length === 0){
+            dispatch(getActivity())
+        }
+    },[countries.length, touristActivity.length, allCountries.length, countriesPerPage, currentPage, dispatch])
    // console.log(allCountries)
 
     return(

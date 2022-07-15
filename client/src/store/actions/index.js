@@ -4,6 +4,8 @@ export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES"
 export const GET_COUNTRY_ID = "GET_COUNTRY_ID"
 export const FILTER = "FILTER"
 export const ORDER = "ORDER"
+export const CREATE_ACTIVITY = "CREATE_ACTIVITY"
+export const GET_ACTIVITY = "GET_ACTIVITY"
 
 export const getAllCountries = (name) => {
     return function(dispatch) {
@@ -48,3 +50,32 @@ export const orderCountry = (order) => {
     }
 } 
 
+export const createActivity = (body) => {
+    return async function (dispatch) {        
+        try{
+        let result = await axios.post('http://localhost:3001/activity', body)               
+            dispatch ({
+                type: CREATE_ACTIVITY,
+                payload: result.data
+            })
+        }   
+        catch(err){
+            console.log(err)
+        }       
+
+    };
+}
+
+export const getActivity = () => {
+    return async function (dispatch) {
+    try {
+        let result = await axios.get('http://localhost:3001/activity')
+            dispatch({
+                type: GET_ACTIVITY,
+                payload: result.data
+    })
+ } catch (error) {
+        console.log(error)
+    }
+    }
+}

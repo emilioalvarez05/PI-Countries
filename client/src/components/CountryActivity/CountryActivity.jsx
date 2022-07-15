@@ -1,66 +1,120 @@
-import { useState } from "react"
+import { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCountries } from "../../store/actions";
+import useForm  from "./useForm";
+
+
+        const initialForm = {
+            name: "",
+            difficulty: "",
+            duration: "",
+            season: "",
+            countries: []
+        }
+
+        function validarFormulario(form){
+        
+            let errors = {}
+        
+            if(!form.name){
+                errors.name = "Tienes que elegir un nombre para tu actividad"
+            } if (form.name.length > 20){
+                errors.name = "La actividad no puede tener mas 20 caracteres"
+            } if (!/^[a-zA-Z& áéíóú]+$/.test(form.name)){
+                   errors.name = "No puedes incluir números o caracteres especiales en tu actividad"
+            }
+            
+            if(!form.difficulty){
+                errors.difficulty = "Debes determinar el nivel de dificultad"
+            }
+        
+            if(!form.duration) {
+                errors.duration = "No hay informacion de la duracion"
+            } 
+            if(!form.season) errors.season = "No hay informacion de la temporada"
+        
+            return errors
+        }
+
+
+
+
+
+    // const countries = useSelector(state => state.countries)
+
+    // const dispatch = useDispatch()
+
+    // const [state, setState] = useState({})
+    // const [form, setForm] = useState({
+    //     nombre: "",
+    //     dificultad: "",
+    //     duracion: "",
+    //     temporada: "",
+    //     countries: []
+    // })
+    // const [errores, setErrores] = useState({
+    //     nombre: "",
+    //     dificultad: "",
+    //     duracion: "",
+    //     temporada: "",
+    //     countries: []
+    // })
+
+    // useEffect(() => {
+    //    if(countries.length === 0){
+    //     dispatch(getAllCountries())
+    //    } 
+    // })
+
+   
+    
 
 
 const CountryActivity = () => {
 
+    const dispatch = useDispatch()
+    const countries = useSelector((state) => state.countries)
 
-    const [state, setState] = useState({})
-    const [errores, setErrores] = useState({
-        nombre: "el nombre es necesario"
-    })
+    const {
+        form,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSelect,
+        handleSubmit
 
-    
+    } = useForm(initialForm, validarFormulario)
 
-function validarFormulario(valor){
-
-    let errores = {}
-
-    if(!valor.nombre){
-         errores.nombre = "Tienes que elegir un nombre para tu actividad"
-    } else if (valor.nombre.length > 20){
-        errores.nombre = "La actividad no puede tener mas 20 caracteres"
-    }
-    if(!valor.dificultad){
-         errores.dificultad = "Tienes que agregar a una dificultad a tu actividad"
-    } else if (valor.dificultad < 1 || valor.dificultad > 5){
-        errores.dificultad = "La dificultad debe ser entre 1 y 5"
-    }
-    if(!valor.duracion) {
-        errores.duracion = "no hay informacion de la duracion"
-    } 
-    if(!valor.temporada) errores.temporada = "no hay informacion de la temporada"
-
-    return errores
-}
-
-
-
-function handleInputChange(evento){
-    
-    setState({
-        ...state,
-        [evento.target.name]: evento.target.value
-    })
-
-    setErrores(validarFormulario({
-        ...state,
-        [evento.target.name]: evento.target.value
-    }))
-}
+    useEffect(() => {
+        if(countries.length === 0){
+            dispatch(getAllCountries())
+        }
+    },[dispatch,countries.length])
 
     return (
 
             <div>
 
-            <form >
-                <p>Nombre</p>
-                <input onChange={(e)=> handleInputChange(e)} type="text" name="nombre" required></input>
-                { errores.nombre ? <span style={ {color:"red"}}> {errores.nombre} </span> : null}
+            <form onSubmit={handleSubmit}>
+
+                <p>Tu actividad</p>
+                { errors.name && <p style={ {color:"red"}}> {errors.name} </p>}
+                <input onChange={(e)=> handleChange(e)} value={form.name} onBlur={handleBlur} type="text" name="name" required></input>
+
                 <p>Dificultad</p>
-                <input onChange={(e)=> handleInputChange(e)} type="number" name="dificultad" required></input>
-                { errores.dificultad ? <span style={ {color:"red"}}> {errores.dificultad} </span> : null}
+                { errors.difficulty && <p style={ {color:"red"}}>{errors.difficulty}</p>}
+                <select onChange={(e)=> handleChange(e)} onBlur={handleBlur} type="text"name="difficulty" required>
+                <option>Nivel de dificultad</option>
+                    <option>1 - Muy facil</option>
+                    <option>2 - Facil</option>
+                    <option>3 - Media</option>
+                    <option>4 - Dificil</option>
+                    <option>5 - Extrema</option>
+                </select>
+                
                 <p>Duracion</p>
-                <select onChange={(e)=> handleInputChange(e)} type="text" name="duracion" required>
+                { errors.duration && <p style={ {color:"red"}}>{errors.duration}</p>}
+                <select onChange={(e)=> handleChange(e)} onBlur={handleBlur} type="text" name="duration" required>
                     <option>Tiempo aproximado</option>
                     <option>30 min</option>
                     <option>60 min</option>
@@ -68,14 +122,43 @@ function handleInputChange(evento){
                     <option>120 min</option>
                     <option>Mas de 2 horas</option>
                 </select>
-                { errores.duracion ? <span style={ {color:"red"}}> {errores.duracion} </span> : null}
+
                 <p>Temporada</p>
-                <input onChange={(e)=> handleInputChange(e)} type="text" name="temporada" required></input>
-                { errores.temporada ? <span style={ {color:"red"}}> {errores.temporada} </span> : null}
+                { errors.season && <p style={ {color:"red"}}>{errors.season}</p>}
+                <select onChange={(e)=> handleChange(e)} onBlur={handleBlur} type="text" name="season" required>
+                    <option>Temporada</option>
+                    <option>Otoño</option>
+                    <option>Invierno</option>
+                    <option>Primavera</option>
+                    <option>Verano</option>
+                </select>
+                <div>
+                    <label>Paises donde se realiza la actividad</label>
+                    <select onChange={(e) => handleSelect(e)}>
+                        <option>Paises</option>
+                        {countries?.map(c => {
+                            return (
+                                <option onBlur={handleBlur}>{c.name}</option>
+                            )
+                        } )}
+                    </select>
+                </div>
+
                 <br/>
-                <input type="submit" value="Crear Actividad" name="submit" disabled={Object.keys(errores).length === 0 ? false : true} required/>
+                <br/>
+
+                <input type="submit" value="Crear Actividad" name="submit" disabled={Object.keys(errors).length === 0 ? false : true} required/>
                 
             </form>
+
+                <div>
+                    {form.countries?.map((c) => <ul key={c.name}><li>{c} <button>X</button></li></ul>)}
+
+                    
+                
+                
+
+                </div>
                
 
             </div>
