@@ -1,5 +1,5 @@
 .contenedor {
-    background-image: url("https://capturetheatlas.com/wp-content/uploads/2020/12/Is-Belize-Open-for-Travel-1415x540-1607269293.jpg");
+    background-image: url("https://img.freepik.com/vector-gratis/fondo-viaje-diseno-plano_23-2148050086.jpg?w=996&t=st=1657928942~exp=1657929542~hmac=11ba8deff96b6cb1ef2a56626809a3d508ed49a23e799f7548dae6c780249118");
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -13,7 +13,7 @@
 }
 .titulo {
     font-size: 300%;
-    background-color: rgba(224, 228, 17, 0.692);
+    /* background-color: rgba(36, 36, 22, 0.692); */
 }
 
 .divBoton {
@@ -43,7 +43,7 @@
 }
 
 .boton:hover{       
-    background-color: #008CBA;
+    background-color: #131617;
     color: white;
 }
 

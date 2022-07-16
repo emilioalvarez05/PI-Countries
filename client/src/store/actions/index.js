@@ -53,7 +53,8 @@ export const orderCountry = (order) => {
 export const createActivity = (body) => {
     return async function (dispatch) {        
         try{
-        let result = await axios.post('http://localhost:3001/activity', body)               
+        let result = await axios.post('http://localhost:3001/activity', body)     
+        console.log("soy result", result.data.message)          
             dispatch ({
                 type: CREATE_ACTIVITY,
                 payload: result.data

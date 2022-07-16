@@ -20,9 +20,10 @@ import useForm  from "./useForm";
                 errors.name = "Tienes que elegir un nombre para tu actividad"
             } if (form.name.length > 20){
                 errors.name = "La actividad no puede tener mas 20 caracteres"
-            } if (!/^[a-zA-Z& áéíóú]+$/.test(form.name)){
-                   errors.name = "No puedes incluir números o caracteres especiales en tu actividad"
-            }
+            }    
+            //  if (!/^[a-zA-Z& áéíóú]+$/.test(form.name)){
+            //        errors.name = "No puedes incluir números o caracteres especiales en tu actividad"
+            // }
             
             if(!form.difficulty){
                 errors.difficulty = "Debes determinar el nivel de dificultad"
@@ -81,6 +82,7 @@ const CountryActivity = () => {
         handleChange,
         handleBlur,
         handleSelect,
+        handleClose,
         handleSubmit
 
     } = useForm(initialForm, validarFormulario)
@@ -99,38 +101,38 @@ const CountryActivity = () => {
 
                 <p>Tu actividad</p>
                 { errors.name && <p style={ {color:"red"}}> {errors.name} </p>}
-                <input onChange={(e)=> handleChange(e)} value={form.name} onBlur={handleBlur} type="text" name="name" required></input>
+                <input onChange={handleChange} value={form.name} onBlur={handleBlur} type="text" name="name" required></input>
 
                 <p>Dificultad</p>
                 { errors.difficulty && <p style={ {color:"red"}}>{errors.difficulty}</p>}
-                <select onChange={(e)=> handleChange(e)} onBlur={handleBlur} type="text"name="difficulty" required>
-                <option>Nivel de dificultad</option>
-                    <option>1 - Muy facil</option>
-                    <option>2 - Facil</option>
-                    <option>3 - Media</option>
-                    <option>4 - Dificil</option>
-                    <option>5 - Extrema</option>
+                <select onChange={handleChange} onBlur={handleBlur} type="text"name="difficulty" required>
+                <option value="Nivel de dificultad">Nivel de dificultad</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
                 
                 <p>Duracion</p>
                 { errors.duration && <p style={ {color:"red"}}>{errors.duration}</p>}
-                <select onChange={(e)=> handleChange(e)} onBlur={handleBlur} type="text" name="duration" required>
-                    <option>Tiempo aproximado</option>
-                    <option>30 min</option>
-                    <option>60 min</option>
-                    <option>90 min</option>
-                    <option>120 min</option>
-                    <option>Mas de 2 horas</option>
+                <select onChange={handleChange} onBlur={handleBlur} type="text" name="duration" required>
+                    <option value="Tiempo aproximado">Tiempo aproximado</option>
+                    <option value="30">30 min</option>
+                    <option value="60">60 min</option>
+                    <option value="90">90 min</option>
+                    <option value="120">120 min</option>
+                    <option value="2">Mas de 2 horas</option>
                 </select>
 
                 <p>Temporada</p>
                 { errors.season && <p style={ {color:"red"}}>{errors.season}</p>}
-                <select onChange={(e)=> handleChange(e)} onBlur={handleBlur} type="text" name="season" required>
-                    <option>Temporada</option>
-                    <option>Otoño</option>
-                    <option>Invierno</option>
-                    <option>Primavera</option>
-                    <option>Verano</option>
+                <select onChange={handleChange} onBlur={handleBlur} type="text" name="season" required>
+                    <option value="Temporada">Temporada</option>
+                    <option value="Otoño">Otoño</option>
+                    <option value="Invierno">Invierno</option>
+                    <option value="Primavera">Primavera</option>
+                    <option value="Verano">Verano</option>
                 </select>
                 <div>
                     <label>Paises donde se realiza la actividad</label>
@@ -147,12 +149,12 @@ const CountryActivity = () => {
                 <br/>
                 <br/>
 
-                <input type="submit" value="Crear Actividad" name="submit" disabled={Object.keys(errors).length === 0 ? false : true} required/>
+                <input onSubmit={handleSubmit} type="submit" value="Crear Actividad" name="submit" disabled={Object.keys(errors).length === 0 ? false : true} required/>
                 
             </form>
 
                 <div>
-                    {form.countries?.map((c) => <ul key={c.name}><li>{c} <button>X</button></li></ul>)}
+                    {form.countries?.map((c) => <ul key={c.name}><li>{c} <button onClick={handleClose}>X</button></li></ul>)}
 
                     
                 

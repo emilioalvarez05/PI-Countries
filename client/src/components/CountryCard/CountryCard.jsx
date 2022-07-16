@@ -9,9 +9,9 @@ const CountryCard = ({flags, name, continents, id}) => {
 
         <div className={style.contenedor}>
             <Link to={"/details/" + id} className={style.link}>
-            <h2>{name}</h2>     
-            <h3>{continents}</h3>    
-            <img className={style.imagen} width= "75%" src={flags} alt="No Found" />   
+            <h2 className={style.h2}>{name}</h2>     
+            <h2 className={style.h2}>{continents}</h2>    
+            <img className={style.imagen} width= "50%"  height="35%" src={flags} alt="No Found" />   
             </Link>
         </div>
 

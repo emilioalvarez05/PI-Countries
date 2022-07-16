@@ -34,17 +34,24 @@ const useForm = (initialForm, validateForm) => {
         console.log("soy form.country", form.countries)
     };
 
+    const handleClose = (c) => {
+        setForm({
+            ...form,
+            countries: form.countries.filter(c => c !== c.name)
+        });
+    } 
+
     const handleSubmit = (e) => {
-        if(!form.name){
-            e.preventDefault();
-            return alert('Name is required!')
-        }
+        e.preventDefault();
+        // if(!form.name){
+        //     return alert('Name is required!')
+        //}
         setErrors(validateForm(form));
         if (Object.keys(errors).length===0){
-            alert("Sending info. Returining to home.")
             dispatch(createActivity(form))
+            alert("Se creo la actividad correctamente")
 
-
+        console.log("soy object", Object.keys(errors))
         setForm({
             name: "",
             difficulty: "",
@@ -66,6 +73,7 @@ const useForm = (initialForm, validateForm) => {
         handleChange,
         handleBlur,
         handleSelect,
+        handleClose,
         handleSubmit,
 
     };

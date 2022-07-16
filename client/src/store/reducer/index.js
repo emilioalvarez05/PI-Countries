@@ -75,8 +75,6 @@ export default function reducer(state = initialState, {type, payload}){
         }
        case FILTER:
         function filterByContinents(countries, searchContinents){
-          console.log("Soy countries", countries)
-          console.log("Soy search", searchContinents)
             if(searchContinents === "continents"){
               return countries
             } else {
@@ -84,23 +82,47 @@ export default function reducer(state = initialState, {type, payload}){
               return filterCountries
             }
           }
-        const countriesFilterByContinents = filterByContinents(state.allCountries, payload.continentes)
         
-        const newOrder = orderFilter(countriesFilterByContinents, state.filter.order)
+        function filterByActivities(array, uuid){
 
+          const findActivity = state.touristActivity.find(e => e.id === uuid )
+
+          const filterCountries = array.filter(c => {
+            
+            let result = findActivity.countries.find(country => country.id === c.id)
+            if(result){
+              return true
+            } else return false
+
+          })
+          return filterCountries
+        }
+        
+
+        console.log("allcountries", state.allCountries)
+        console.log("soyelPayload", payload)
+        const countriesFilterByContinents = filterByContinents(state.allCountries, payload.continentes)
+        const countriesFilterByActivities = filterByActivities(countriesFilterByContinents, payload.actividades)
+            //console.log("soy countryFifi", countriesFilterByContinents)
+            
+            const newOrder = orderFilter(countriesFilterByActivities, state.filter.order)
+            
         return {
           ...state,
           countries: newOrder,
           filter: {
             ...state.filter,
-            continentes: payload.searchContinents
+            continentes: payload.continentes,
+            actividades: payload.actividades
 
           }
 
         }
         case CREATE_ACTIVITY:
           return {
-              ...state,                    
+              ...state,            
+              countries: state.countries.concat(payload),
+              allCountries: state.countries.concat(payload)        
           }
         case GET_ACTIVITY:
           return {

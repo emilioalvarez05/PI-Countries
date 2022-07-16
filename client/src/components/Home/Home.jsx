@@ -13,7 +13,7 @@ const Home = () => {
     const allCountries = useSelector(state => state.allCountries)
     const touristActivity = useSelector(state => state.touristActivity)
     const dispatch = useDispatch()
-    console.log(allCountries)
+    
 
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage] = useState(10)
@@ -26,24 +26,24 @@ const Home = () => {
       
     };
 
-    function beforePage() {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    }
+    // function beforePage() {
+    //     if (currentPage > 1) {
+    //         setCurrentPage(currentPage - 1);
+    //     }
+    // }
 
-    function nextPage() {
-        let lastPage = Math.ceil(countries.length / countriesPerPage);
-        if (currentPage <= lastPage) {
-            setCurrentPage(currentPage + 1);
-        }
-    }
+    // function nextPage() {
+    //     let lastPage = 1 + Math.ceil(countries.length / countriesPerPage);
+    //     if (currentPage < lastPage) {
+    //         setCurrentPage(currentPage + 1);
+    //     }
+    // }
 
     useEffect(() => {
         if(allCountries.length === 0){
             dispatch(getAllCountries())
         }
-        let lastPage = Math.ceil(countries.length / countriesPerPage);
+        let lastPage = 1 + Math.ceil(countries.length / countriesPerPage);
         if (currentPage > lastPage) {
             setCurrentPage(1);
         }
@@ -51,7 +51,7 @@ const Home = () => {
             dispatch(getActivity())
         }
     },[countries.length, touristActivity.length, allCountries.length, countriesPerPage, currentPage, dispatch])
-   // console.log(allCountries)
+   //console.log(countries)
 
     return(
 
@@ -67,8 +67,8 @@ const Home = () => {
                     countries={countries.length}
                     paginado={paginado}
                     currentPage={currentPage}
-                    beforePage={beforePage}
-                    nextPage={nextPage}
+                   // beforePage={beforePage}
+                   // nextPage={nextPage}
                 />
             </div>
             <div className={style.card}>

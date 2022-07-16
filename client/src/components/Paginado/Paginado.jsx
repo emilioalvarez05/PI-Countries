@@ -14,7 +14,7 @@ export default function Paginado ({countriesPerPage, countries, paginado, curren
         <div className={style.padre}>
         <nav className={style.nav}>
             <ul className={style.ul}>
-            <button className={currentPage === "Anterior" ? style.botonSeleccionado : style.boton} onClick={beforePage}>Anterior</button>
+            {/* <button className={currentPage === "Anterior" ? style.botonSeleccionado : style.boton} onClick={beforePage}>Anterior</button> */}
             
                 { numberOfPage && 
                 numberOfPage.map(numero =>(                    
@@ -22,7 +22,7 @@ export default function Paginado ({countriesPerPage, countries, paginado, curren
                        <button className={currentPage === numero ? style.botonSeleccionado : style.boton } onClick={() => paginado(numero)}>{numero}</button>
                     </li>
                 ))}
-            <button className={currentPage === "Proximo" ? style.botonSeleccionado : style.boton} onClick={nextPage}>Proximo</button>
+            {/* <button className={currentPage === "Proximo" ? style.botonSeleccionado : style.boton} onClick={nextPage}>Proximo</button> */}
             </ul>
         </nav>
         </div>

@@ -6,10 +6,11 @@ import { filter, orderCountry } from "../../store/actions"
 const Filter = () => {
 
     const {order, continentes, actividades} = useSelector(state => state.filter)
+    const touristActivity = useSelector(state => state.touristActivity)
+    //console.log(touristActivity)
     const dispatch = useDispatch()
 
     function onOrderChange (e) {
-        console.log(e.target.value)
         e.preventDefault()
         dispatch(orderCountry(e.target.value))
     }
@@ -17,12 +18,29 @@ const Filter = () => {
     function onFilterChange (e) {
         e.preventDefault()
         if(e.target.name === "selectContinents"){
+            console.log("entre a SelectContinents", {
+                order: order,
+                continentes: e.target.value,
+                actividades: actividades
+            })
             dispatch(filter({
                 order: order,
                 continentes: e.target.value,
                 actividades: actividades
             }))
         }
+        if(e.target.name === "selectActivity"){
+            console.log("entre a selectActivity", {
+                order: order,
+                continentes: continentes,
+                actividades: e.target.value
+            } )
+            dispatch(filter({
+                order: order,
+                continentes: continentes,
+                actividades: e.target.value
+            }))
+        } 
         
     }
 
@@ -50,8 +68,13 @@ const Filter = () => {
             <option value="Antarctica">Antartida</option>
         </select>
 
-        <select>
+        <select name="selectActivity" value={actividades} onChange={onFilterChange}>
             <option value="activity">Actividades</option>
+            {touristActivity && touristActivity.map((act) => {
+                return (
+                    <option key={act.id} value={act.id}>{act.name}</option>
+                )
+            })}
         </select>
 
         </div>
