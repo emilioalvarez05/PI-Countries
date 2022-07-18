@@ -36,9 +36,9 @@ const SearchBar = () => {
     return (
 
         <div>
-            <form className={style.buscador} onSubmit={handleOnSubmit}>
-                <input type="text"value={search} placeholder="Introduce un pais" onChange={handleOnChange}></input>
-                <input type="submit" value="Buscar"></input>
+            <form onSubmit={handleOnSubmit}>
+                <input className={style.input} type="text"value={search} placeholder="Introduce un pais" onChange={handleOnChange}></input>
+                <input className={style.buscador} type="submit" value="Buscar"></input>
             </form>
         </div>
 

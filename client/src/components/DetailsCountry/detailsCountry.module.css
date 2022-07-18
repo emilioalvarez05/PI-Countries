@@ -1,6 +1,7 @@
 .fondo {
     background-image: url("https://i.pinimg.com/564x/20/f2/ab/20f2ab278256a2465a097e446f09a634.jpg");
     background-size: cover;
+    height: 100vh;
     padding: 30px;
     padding-top: 2%;
     padding-bottom: 5%;

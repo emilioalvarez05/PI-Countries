@@ -78,32 +78,36 @@ export default function reducer(state = initialState, {type, payload}){
             if(searchContinents === "continents"){
               return countries
             } else {
+              console.log("entre al else", countries)
               const filterCountries = countries.filter((c) => c.continents === searchContinents )
               return filterCountries
             }
           }
         
         function filterByActivities(array, uuid){
-
+          if(uuid === "activity"){
+            return array
+          } else {
           const findActivity = state.touristActivity.find(e => e.id === uuid )
-
+          
           const filterCountries = array.filter(c => {
             
-            let result = findActivity.countries.find(country => country.id === c.id)
+            
+            let result = findActivity.countries?.find(country => country.id === c.id)
             if(result){
               return true
             } else return false
-
-          })
+          
+          }) 
           return filterCountries
+          }
         }
         
 
-        console.log("allcountries", state.allCountries)
-        console.log("soyelPayload", payload)
+        
         const countriesFilterByContinents = filterByContinents(state.allCountries, payload.continentes)
         const countriesFilterByActivities = filterByActivities(countriesFilterByContinents, payload.actividades)
-            //console.log("soy countryFifi", countriesFilterByContinents)
+            
             
             const newOrder = orderFilter(countriesFilterByActivities, state.filter.order)
             

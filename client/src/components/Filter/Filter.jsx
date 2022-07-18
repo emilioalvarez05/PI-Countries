@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { filter, orderCountry } from "../../store/actions"
+import style from "./filter.module.css"
 
 
 
@@ -47,9 +48,9 @@ const Filter = () => {
 
     return(
 
-        <div>
+        <div className={style.contenedor}>
 
-        <select value={order} onChange={onOrderChange}>
+        <select className={style.input} value={order} onChange={onOrderChange}>
             <option value="order" >Ordenar por</option>
             <option value="a-z">A - Z</option>
             <option value="z-a">Z - A</option>
@@ -57,7 +58,7 @@ const Filter = () => {
             <option value="menorPoblacion">Menor Poblacion</option>
         </select>
 
-        <select name="selectContinents" value={continentes} onChange={onFilterChange}>
+        <select className={style.input} name="selectContinents" value={continentes} onChange={onFilterChange}>
             <option value="continents">Continentes</option>
             <option value="North America">Norte America</option>
             <option value="South America">Sudamerica</option>
@@ -68,7 +69,8 @@ const Filter = () => {
             <option value="Antarctica">Antartida</option>
         </select>
 
-        <select name="selectActivity" value={actividades} onChange={onFilterChange}>
+        
+        <select className={style.input} name="selectActivity" value={actividades} onChange={onFilterChange}>
             <option value="activity">Actividades</option>
             {touristActivity && touristActivity.map((act) => {
                 return (

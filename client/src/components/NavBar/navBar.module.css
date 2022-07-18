@@ -11,11 +11,11 @@
     box-sizing: border-box;
 }
 
-/* .navbar nav {
-    height: 100%;
-} */
 
 .list {
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 150%;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -26,6 +26,9 @@
 }
 
 .listitem {
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 150%;
     margin: 0;
     display: flex;
     height: 100%;

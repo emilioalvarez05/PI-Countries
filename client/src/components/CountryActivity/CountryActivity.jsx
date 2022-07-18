@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCountries } from "../../store/actions";
 import useForm  from "./useForm";
+import style from "./countryActivity.module.css"
 
 
         const initialForm = {
@@ -95,28 +96,36 @@ const CountryActivity = () => {
 
     return (
 
-            <div>
+        <div className={style.divMay}>
 
-            <form onSubmit={handleSubmit}>
+            <div className={style.contenedor}>
+            <h3 className={style.titulo}>CREA TU NUEVA ACTIVIDAD</h3>
 
+            <form onSubmit={handleSubmit} className={style.formulario} >
+
+                <div className={style.input}>
                 <p>Tu actividad</p>
                 { errors.name && <p style={ {color:"red"}}> {errors.name} </p>}
-                <input onChange={handleChange} value={form.name} onBlur={handleBlur} type="text" name="name" required></input>
+                <input className={style.input1} onChange={handleChange} value={form.name} onBlur={handleBlur} type="text" name="name" required></input>
+                </div>
 
+                <div className={style.input}>
                 <p>Dificultad</p>
                 { errors.difficulty && <p style={ {color:"red"}}>{errors.difficulty}</p>}
-                <select onChange={handleChange} onBlur={handleBlur} type="text"name="difficulty" required>
-                <option value="Nivel de dificultad">Nivel de dificultad</option>
+                <select className={style.input2}  onChange={handleChange} onBlur={handleBlur} type="text"name="difficulty" required>
+                <option  value="Nivel de dificultad">Nivel de dificultad</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                
+                </div>
+
+                <div className={style.input}>
                 <p>Duracion</p>
                 { errors.duration && <p style={ {color:"red"}}>{errors.duration}</p>}
-                <select onChange={handleChange} onBlur={handleBlur} type="text" name="duration" required>
+                <select className={style.input2} onChange={handleChange} onBlur={handleBlur} type="text" name="duration" required>
                     <option value="Tiempo aproximado">Tiempo aproximado</option>
                     <option value="30">30 min</option>
                     <option value="60">60 min</option>
@@ -124,19 +133,23 @@ const CountryActivity = () => {
                     <option value="120">120 min</option>
                     <option value="2">Mas de 2 horas</option>
                 </select>
+                </div>
 
+                <div className={style.input}>
                 <p>Temporada</p>
                 { errors.season && <p style={ {color:"red"}}>{errors.season}</p>}
-                <select onChange={handleChange} onBlur={handleBlur} type="text" name="season" required>
+                <select className={style.input2} onChange={handleChange} onBlur={handleBlur} type="text" name="season" required>
                     <option value="Temporada">Temporada</option>
                     <option value="Otoño">Otoño</option>
                     <option value="Invierno">Invierno</option>
                     <option value="Primavera">Primavera</option>
                     <option value="Verano">Verano</option>
                 </select>
-                <div>
+                </div>
+
+                <div className={style.input}>
                     <label>Paises donde se realiza la actividad</label>
-                    <select onChange={(e) => handleSelect(e)}>
+                    <select className={style.input2} onChange={(e) => handleSelect(e)}>
                         <option>Paises</option>
                         {countries?.map(c => {
                             return (
@@ -149,12 +162,12 @@ const CountryActivity = () => {
                 <br/>
                 <br/>
 
-                <input onSubmit={handleSubmit} type="submit" value="Crear Actividad" name="submit" disabled={Object.keys(errors).length === 0 ? false : true} required/>
+                <input onSubmit={handleSubmit} className={style.Btn} type="submit" value="Crear Actividad" name="submit" disabled={Object.keys(errors).length === 0 ? false : true} required/>
                 
             </form>
 
                 <div>
-                    {form.countries?.map((c) => <ul key={c.name}><li>{c} <button onClick={handleClose}>X</button></li></ul>)}
+                    {form.countries?.map((c) => <ul key={c.name} className={style.lista}><li>{c} <button className={style.CBut} onClick={handleClose}>X</button></li></ul>)}
 
                     
                 
@@ -164,8 +177,8 @@ const CountryActivity = () => {
                
 
             </div>
-
-
+            
+        </div>
 
     )
 }
