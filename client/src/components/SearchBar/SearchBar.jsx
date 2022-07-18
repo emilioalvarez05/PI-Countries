@@ -1,7 +1,9 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { getAllCountries } from "../../store/actions"
+import { getCountryByName } from "../../store/actions"
 import style from "./searchBar.module.css"
+import { useHistory } from "react-router-dom"
+
 
 
 
@@ -9,28 +11,32 @@ const SearchBar = () => {
 
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
+    const history = useHistory()
+   
 
 
     const handleOnChange = (e) => {
         e.preventDefault()
         setSearch(e.target.value)
-        //console.log(search, "soy search")
-        //console.log(e.target.value, "soy e.target.value")
+       
 
     } 
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault()
         try {
             if(!search){
                 alert("Tienes que escribir algo")
             } else {
-                dispatch(getAllCountries(search))
+                dispatch(getCountryByName(search))
+                history.push("/home")
                 setSearch("")
+            
             }
         } catch (error) {
             console.log(error)
         }
+      
     }
 
     return (

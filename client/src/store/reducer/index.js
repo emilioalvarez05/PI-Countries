@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY_ID, ORDER, FILTER, CREATE_ACTIVITY , GET_ACTIVITY} from "../actions";
+import { GET_ALL_COUNTRIES, GET_COUNTRY_ID, ORDER, FILTER, CREATE_ACTIVITY , GET_ACTIVITY, GET_COUNTRY_BY_NAME} from "../actions";
 
 const initialState = {
     countries: [],
@@ -132,6 +132,12 @@ export default function reducer(state = initialState, {type, payload}){
           return {
             ...state,
            touristActivity: payload 
+          }
+
+        case GET_COUNTRY_BY_NAME:
+          return {
+            ...state,
+            countries: payload,
           }
 
         

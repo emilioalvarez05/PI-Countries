@@ -26,18 +26,6 @@ const Home = () => {
       
     };
 
-    // function beforePage() {
-    //     if (currentPage > 1) {
-    //         setCurrentPage(currentPage - 1);
-    //     }
-    // }
-
-    // function nextPage() {
-    //     let lastPage = 1 + Math.ceil(countries.length / countriesPerPage);
-    //     if (currentPage < lastPage) {
-    //         setCurrentPage(currentPage + 1);
-    //     }
-    // }
 
     useEffect(() => {
         if(allCountries.length === 0){
@@ -51,7 +39,6 @@ const Home = () => {
             dispatch(getActivity())
         }
     },[countries.length, touristActivity.length, allCountries.length, countriesPerPage, currentPage, dispatch])
-   //console.log(countries)
 
     return(
 
@@ -72,7 +59,7 @@ const Home = () => {
                 />
             </div>
             <div className={style.card}>
-            {currentCountries.length ? (currentCountries?.map(country => {
+            {currentCountries && currentCountries.length > 0 ? (currentCountries?.map(country => {
                 return(
                     
                     <CountryCard
@@ -83,7 +70,9 @@ const Home = () => {
                     continents = {country.continents}
                     />
                 )
-            })) : <h1>Cargando</h1> 
+            })) : <div className={style.cargando}>
+                 <h1>Cargando...</h1> 
+                 </div>
         }
         </div>
         </div>

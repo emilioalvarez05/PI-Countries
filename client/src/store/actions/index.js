@@ -6,10 +6,11 @@ export const FILTER = "FILTER"
 export const ORDER = "ORDER"
 export const CREATE_ACTIVITY = "CREATE_ACTIVITY"
 export const GET_ACTIVITY = "GET_ACTIVITY"
+export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME"
 
-export const getAllCountries = (name) => {
+export const getAllCountries = () => {
     return function(dispatch) {
-         axios.get(`http://localhost:3001/countries/?name=${name? name : ""}`) 
+         axios.get(`http://localhost:3001/countries`) 
         .then((allCountries) => {
          dispatch({
              type: GET_ALL_COUNTRIES, 
@@ -78,5 +79,25 @@ export const getActivity = () => {
  } catch (error) {
         console.log(error)
     }
+    }
+}
+
+export const getCountryByName = (name) => {
+    return async function (dispatch) {
+        try {
+            let result = await axios.get(`http://localhost:3001/countries/?name=`+ name)
+            if(result.data.msg){
+                console.log("soy result", result.data.msg)
+                alert(result.data.msg)
+            } else {
+                dispatch({
+                    type: GET_COUNTRY_BY_NAME,
+                    payload: result.data
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            
+        }
     }
 }

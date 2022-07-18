@@ -18,7 +18,9 @@
     justify-content: space-around;    
     border-radius: 10px;
     border: 4px solid black;
-    padding: 80px;
+    padding: 140px;
+    padding-bottom: 220px;
+    padding-top: 50px;
     margin-bottom: 200px;
     margin-top: 0px;
     margin-left: 30px;
@@ -34,14 +36,15 @@
     flex-direction: column;
     align-items: flex-start;
     margin-right: 100px;
-    margin-top: 50px;   
+    margin-top: -25px; 
 }
 
 .titulo {
     font-family: 'Antonio', sans-serif;
-    font-size: 26px;
+    font-size: 35px;
     color: black;
     padding: 100px;
+    padding-top: 90px;
 }
 
 .input {
@@ -49,20 +52,33 @@
     justify-content: space-around;
     align-items: center;
     color: black;
+    font-size: 22px;
 }
 
 .input1 {
-    border-radius: 8px;
-    margin-bottom: 0px;
-    margin-left: 25px;
-    align-content: center;
+    padding: 5px;
+    font-size: 15px;
+    border-width: 3px;
+    border-color: #05040f;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-style: solid;
+    border-radius: 16px;
+    box-shadow: 3px 6px 15px rgba(66,66,66,.75);
+    text-shadow: 0px 0px 5px rgba(66,66,66,.75);
 }
 
 .input2 {
-    border-radius: 8px;
-    margin-bottom: 0px;
-    margin-left: 25px;
-    align-content: center;
+    padding: 5px;
+    font-size: 15px;
+    border-width: 3px;
+    border-color: #05040f;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-style: solid;
+    border-radius: 16px;
+    box-shadow: 3px 6px 15px rgba(66,66,66,.75);
+    text-shadow: 0px 0px 5px rgba(66,66,66,.75);
 }
 .lista {
     margin-left: 0;

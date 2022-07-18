@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { filter, orderCountry } from "../../store/actions"
+import { filter, getAllCountries, orderCountry } from "../../store/actions"
 import style from "./filter.module.css"
 
 
@@ -41,10 +41,12 @@ const Filter = () => {
                 continentes: continentes,
                 actividades: e.target.value
             }))
-        } 
-        
+        }
     }
-
+    
+    const handleOnChange = () =>{
+        dispatch(getAllCountries())
+    }
 
     return(
 
@@ -78,6 +80,8 @@ const Filter = () => {
                 )
             })}
         </select>
+
+        <button className={style.input} onClick={handleOnChange}>Recargar paises</button>
 
         </div>
     )

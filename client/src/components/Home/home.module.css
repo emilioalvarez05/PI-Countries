@@ -13,3 +13,11 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
+
+.cargando {
+    padding: 100%;
+    margin-left: 230px;
+    margin-right: 150px;
+    margin-top: -500px;
+    font-size: 25px;
+}

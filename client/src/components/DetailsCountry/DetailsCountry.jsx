@@ -7,25 +7,27 @@ import ActivityDetails from "../ActivityDetails/ActivityDetails"
 
 
 
+
 const DetailsCountry = () => {
 
     const countryDetail = useSelector(state => state.countriesDetail)
     const dispatch = useDispatch()
     const {id} = useParams()
-    //console.log(id, "soy id")
+    
     useEffect(() => {
        dispatch(getCountryById(id))
 
     },[dispatch, id])
-    //console.log(countryDetail)
+    
 
     if(!countryDetail.id) {
         return (
             <div>Estamos buscando el pais</div>
         )
     }
-    console.log(countryDetail)
+    
     return(
+        
         <div className={style.fondo}>
         <div className={style.contenedor}>
         <div>
@@ -34,16 +36,19 @@ const DetailsCountry = () => {
                 <h1 className={style.name}>Name:{countryDetail.name}</h1>
                 <h1 className={style.name}>Codigo:{countryDetail.id}</h1>
                 <h1 className={style.name}>Continente:{countryDetail.continents}</h1>
+        </div>
+        <div className={style.card}>       
                 <h2 className={style.name}>Capital:{countryDetail.capital}</h2>
                 <h3 className={style.name}>Subregion:{countryDetail.subregion}</h3>
                 <h1 className={style.name}>Area:{countryDetail.area} km2</h1>
                 <h1 className={style.name}>Poblacion:{countryDetail.population}</h1>
-            {countryDetail.activities ? 
+        </div>
+            {countryDetail.activities.length > 0 ? (
             <div>
                     <h1 className={style.titulo}>Actividades Turisticas</h1>
                     {countryDetail.activities?.map((act) => {
                         return <ActivityDetails
-                        key = {act.id}
+                        key = {act.name}
                         name = {act.name}
                         id = {act.id}
                         difficulty = {act.difficulty}
@@ -52,12 +57,12 @@ const DetailsCountry = () => {
                     })}
 
 
-            </div> : ""
+            </div>) : ""
 
             }      
             
 
-        </div>
+        
         </div>
         </div>
         </div>

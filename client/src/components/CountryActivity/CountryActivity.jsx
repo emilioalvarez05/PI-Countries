@@ -22,9 +22,9 @@ import style from "./countryActivity.module.css"
             } if (form.name.length > 20){
                 errors.name = "La actividad no puede tener mas 20 caracteres"
             }    
-            //  if (!/^[a-zA-Z& áéíóú]+$/.test(form.name)){
-            //        errors.name = "No puedes incluir números o caracteres especiales en tu actividad"
-            // }
+             if (!/^[a-zA-Z& áéíóú]+$/.test(form.name)){
+                   errors.name = "No puedes incluir números o caracteres especiales en tu actividad"
+            }
             
             if(!form.difficulty){
                 errors.difficulty = "Debes determinar el nivel de dificultad"
@@ -33,43 +33,11 @@ import style from "./countryActivity.module.css"
             if(!form.duration) {
                 errors.duration = "No hay informacion de la duracion"
             } 
-            if(!form.season) errors.season = "No hay informacion de la temporada"
+            if(!form.season) {errors.season = "No hay informacion de la temporada"}
         
             return errors
         }
 
-
-
-
-
-    // const countries = useSelector(state => state.countries)
-
-    // const dispatch = useDispatch()
-
-    // const [state, setState] = useState({})
-    // const [form, setForm] = useState({
-    //     nombre: "",
-    //     dificultad: "",
-    //     duracion: "",
-    //     temporada: "",
-    //     countries: []
-    // })
-    // const [errores, setErrores] = useState({
-    //     nombre: "",
-    //     dificultad: "",
-    //     duracion: "",
-    //     temporada: "",
-    //     countries: []
-    // })
-
-    // useEffect(() => {
-    //    if(countries.length === 0){
-    //     dispatch(getAllCountries())
-    //    } 
-    // })
-
-   
-    
 
 
 const CountryActivity = () => {
@@ -83,7 +51,7 @@ const CountryActivity = () => {
         handleChange,
         handleBlur,
         handleSelect,
-        handleClose,
+        handleDelete,
         handleSubmit
 
     } = useForm(initialForm, validarFormulario)
@@ -104,14 +72,13 @@ const CountryActivity = () => {
             <form onSubmit={handleSubmit} className={style.formulario} >
 
                 <div className={style.input}>
-                <p>Tu actividad</p>
-                { errors.name && <p style={ {color:"red"}}> {errors.name} </p>}
+                <p className={style.input}><strong>Tu actividad</strong></p>
                 <input className={style.input1} onChange={handleChange} value={form.name} onBlur={handleBlur} type="text" name="name" required></input>
                 </div>
+                { errors.name && <p style={ {color:"red"}}> {errors.name} </p>}
 
                 <div className={style.input}>
-                <p>Dificultad</p>
-                { errors.difficulty && <p style={ {color:"red"}}>{errors.difficulty}</p>}
+                <p><strong>Dificultad</strong></p>
                 <select className={style.input2}  onChange={handleChange} onBlur={handleBlur} type="text"name="difficulty" required>
                 <option  value="Nivel de dificultad">Nivel de dificultad</option>
                     <option value="1">1</option>
@@ -121,10 +88,10 @@ const CountryActivity = () => {
                     <option value="5">5</option>
                 </select>
                 </div>
+                { errors.difficulty && <p style={ {color:"red"}}>{errors.difficulty}</p>}
 
                 <div className={style.input}>
-                <p>Duracion</p>
-                { errors.duration && <p style={ {color:"red"}}>{errors.duration}</p>}
+                <p><strong>Duracion</strong></p>
                 <select className={style.input2} onChange={handleChange} onBlur={handleBlur} type="text" name="duration" required>
                     <option value="Tiempo aproximado">Tiempo aproximado</option>
                     <option value="30">30 min</option>
@@ -134,10 +101,10 @@ const CountryActivity = () => {
                     <option value="2">Mas de 2 horas</option>
                 </select>
                 </div>
+                { errors.duration && <p style={ {color:"red"}}>{errors.duration}</p>}
 
                 <div className={style.input}>
-                <p>Temporada</p>
-                { errors.season && <p style={ {color:"red"}}>{errors.season}</p>}
+                <p><strong>Temporada</strong></p>
                 <select className={style.input2} onChange={handleChange} onBlur={handleBlur} type="text" name="season" required>
                     <option value="Temporada">Temporada</option>
                     <option value="Otoño">Otoño</option>
@@ -146,14 +113,15 @@ const CountryActivity = () => {
                     <option value="Verano">Verano</option>
                 </select>
                 </div>
+                { errors.season && <p style={ {color:"red"}}>{errors.season}</p>}
 
                 <div className={style.input}>
-                    <label>Paises donde se realiza la actividad</label>
+                    <label><strong>Paises donde se realiza la actividad</strong></label>
                     <select className={style.input2} onChange={(e) => handleSelect(e)}>
                         <option>Paises</option>
                         {countries?.map(c => {
                             return (
-                                <option onBlur={handleBlur}>{c.name}</option>
+                                <option key={c.id} onBlur={handleBlur}>{c.name}</option>
                             )
                         } )}
                     </select>
@@ -167,7 +135,7 @@ const CountryActivity = () => {
             </form>
 
                 <div>
-                    {form.countries?.map((c) => <ul key={c.name} className={style.lista}><li>{c} <button className={style.CBut} onClick={handleClose}>X</button></li></ul>)}
+                    {form.countries?.map((c) => <ul key={c.name} className={style.lista}><li>{c} <button className={style.CBut} onClick={() => handleDelete(c)}>X</button></li></ul>)}
 
                     
                 
