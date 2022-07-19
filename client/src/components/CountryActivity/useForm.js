@@ -12,6 +12,7 @@ const useForm = (initialForm, validateForm) => {
 
     const handleChange = (e) => {
         const {name, value} = e.target
+        setErrors(validateForm(form))
             setForm({
                 ...form,
                 [name] : value
@@ -53,7 +54,7 @@ const useForm = (initialForm, validateForm) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors(validateForm(form));
+       // setErrors(validateForm(form));
         if (Object.keys(errors).length===0){
             dispatch(createActivity(form))
             alert("Se creo la actividad correctamente")

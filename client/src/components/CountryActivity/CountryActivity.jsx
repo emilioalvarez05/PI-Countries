@@ -81,11 +81,11 @@ const CountryActivity = () => {
                 <p><strong>Dificultad</strong></p>
                 <select className={style.input2}  onChange={handleChange} onBlur={handleBlur} type="text"name="difficulty" required>
                 <option  value="Nivel de dificultad">Nivel de dificultad</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="1">1 - Muy facil</option>
+                    <option value="2">2 - Facil</option>
+                    <option value="3">3 - Medio</option>
+                    <option value="4">4 - Dificil</option>
+                    <option value="5">5 - Extrema</option>
                 </select>
                 </div>
                 { errors.difficulty && <p style={ {color:"red"}}>{errors.difficulty}</p>}

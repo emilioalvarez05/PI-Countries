@@ -26,6 +26,35 @@
     box-shadow: 20px 30px 24px -1px rgba(0,0,0,0.81);
 }
 
+.country {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: x-large;
+}
+
+.card{
+    padding: 28px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: x-large;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+
+.card2{
+    padding: 28px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: x-large;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+
 .name{
     
     font-size: 100%;

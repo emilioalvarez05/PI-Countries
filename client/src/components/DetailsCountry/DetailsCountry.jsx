@@ -31,17 +31,19 @@ const DetailsCountry = () => {
         <div className={style.fondo}>
         <div className={style.contenedor}>
         <div>
-        <div className={style.card}>
                 <img className={style.imagen} width= "20%" src={countryDetail.flags} alt="No Found"/>
-                <h1 className={style.name}>Name:{countryDetail.name}</h1>
-                <h1 className={style.name}>Codigo:{countryDetail.id}</h1>
-                <h1 className={style.name}>Continente:{countryDetail.continents}</h1>
+        <div className={style.country}>
+                <h1 className={style.name}>Name: {countryDetail.name}</h1>
         </div>
-        <div className={style.card}>       
-                <h2 className={style.name}>Capital:{countryDetail.capital}</h2>
-                <h3 className={style.name}>Subregion:{countryDetail.subregion}</h3>
-                <h1 className={style.name}>Area:{countryDetail.area} km2</h1>
-                <h1 className={style.name}>Poblacion:{countryDetail.population}</h1>
+        <div className={style.card}>
+                <h1 className={style.name}>Codigo: {countryDetail.id}</h1>
+                <h1 className={style.name}>Continente: {countryDetail.continents}</h1>
+                <h2 className={style.name}>Capital: {countryDetail.capital}</h2>
+        </div>
+        <div className={style.card2}>       
+                <h3 className={style.name}>Subregion: {countryDetail.subregion}</h3>
+                <h1 className={style.name}>Area: {countryDetail.area} km2</h1>
+                <h1 className={style.name}>Poblacion: {countryDetail.population}</h1>
         </div>
             {countryDetail.activities.length > 0 ? (
             <div>
