@@ -21,20 +21,16 @@ const ActivityDetails = ({name, difficulty, duration, season}) => {
 
     return (
 
-        <div>
+        <div className={style.Activities}>
 
-            <p className={style.titulo}>Nombre de la actividad: </p>
-            <p>{name}</p>
-            <p className={style.titulo}>Dificultad: </p>
-            <p>{difficulty}</p>
-            <p className={style.titulo}>Duracion: </p>
-            <p>{duration}</p>
-            <p className={style.titulo}>Temporada: </p>
-            <p>{season}</p>
+            <p className={style.titulo}>Nombre de la actividad: {name} </p>
+            <p className={style.titulo}>Dificultad: {difficulty} </p>
+            <p className={style.titulo}>Duracion: {duration} </p>
+            <p className={style.titulo}>Temporada: {season} </p>
             <p>{countryDetail.id}</p>
             
-
         </div>
+
     )
 
 

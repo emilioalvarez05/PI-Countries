@@ -8,7 +8,6 @@ const Filter = () => {
 
     const {order, continentes, actividades} = useSelector(state => state.filter)
     const touristActivity = useSelector(state => state.touristActivity)
-    //console.log(touristActivity)
     const dispatch = useDispatch()
 
     function onOrderChange (e) {

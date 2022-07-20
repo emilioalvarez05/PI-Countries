@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 import CountryActivity from './components/CountryActivity/CountryActivity';
 
 
+
 function App() {
   return (
     <div className="App">

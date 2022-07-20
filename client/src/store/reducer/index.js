@@ -78,7 +78,7 @@ export default function reducer(state = initialState, {type, payload}){
             if(searchContinents === "continents"){
               return countries
             } else {
-              console.log("entre al else", countries)
+              
               const filterCountries = countries.filter((c) => c.continents === searchContinents )
               return filterCountries
             }

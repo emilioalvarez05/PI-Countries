@@ -27,10 +27,13 @@ export const getCountryById = (id) => {
     return async function(dispatch){
         try {
         let country = await axios.get(`http://localhost:3001/countries/${id}`)
+        if(country.data.msg){
+            alert(country.data.msg)
+        }else{
         dispatch({
             type: GET_COUNTRY_ID,
             payload: country.data
-        })
+        })}
         } catch (error) {
             
         }
@@ -55,11 +58,15 @@ export const createActivity = (body) => {
     return async function (dispatch) {        
         try{
         let result = await axios.post('http://localhost:3001/activity', body)     
-        console.log("soy result", result.data.message)          
+            if(result.data.msg){      
+            alert(result.data.msg)
+            } else {    
             dispatch ({
                 type: CREATE_ACTIVITY,
                 payload: result.data
             })
+            alert("Se creo la actividad correctamente")}
+            
         }   
         catch(err){
             console.log(err)

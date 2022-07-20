@@ -57,7 +57,7 @@ const useForm = (initialForm, validateForm) => {
        // setErrors(validateForm(form));
         if (Object.keys(errors).length===0){
             dispatch(createActivity(form))
-            alert("Se creo la actividad correctamente")
+            
 
         
         setForm({
